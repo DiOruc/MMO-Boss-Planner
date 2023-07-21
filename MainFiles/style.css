@@ -1,0 +1,774 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+    overflow: hidden;
+
+    scrollbar-width: 5px;
+    /*::-webkit-scrollbar {
+        width: 5px;
+      }
+      
+      /* Track */
+      /*::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+       
+      /* Handle */
+      /*::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      /*::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }*/
+}
+
+/* Font and text styling. TODO: Remove h4. We should instead use our own classes like "large", "Medium" "Small" Footnote" */
+p{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+}
+h4{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.megaText{
+    
+    margin: 0;
+    padding: 0;
+    font-size: 36px;
+}
+.bigText{
+        margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+.mediumText{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+.smallText{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+.whiteText{
+    color: white;
+}
+.blackText{
+    color: black;
+}
+
+/* End of font and text styling */
+
+
+.main{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+@media screen and (max-width:1280px) {
+    .main{
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }   
+}
+
+/*
+    TODO: Add a min width for the tabs, (150px or sth.), add sidescrolling (preferrably no visible scroll bar).
+*/
+/* The drawing board's tab styling. This will probably need to change dramatically, but we'll see. */
+.mainNav{
+   width: 100%;
+   height: 5%;
+   margin: 0;
+   padding: 0;
+   font-size: 0;
+   background-color: #252229;
+
+}
+
+.tabSectionDivider{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+.tabSection{
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.tab{
+    min-width: 20vw;
+    max-width: 20vw;
+    height: 100%;
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 1px;
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #221f26;
+    border: none;
+    color: white;
+    overflow: hidden;
+}
+.tab:hover{
+    cursor: pointer;
+    background-color: #37323d;
+}
+.selectedTab{
+    background-color: #37323d;
+}
+
+.tabDiv{
+    /*border-top-right-radius: 15%;
+    border-top-left-radius: 15%;*/
+    display: inline-block;
+    width: 19%;
+    height: 100%;
+    background-color: #221f26;
+    color: white;
+
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 1px;
+
+    margin-right: 0;    
+    margin: 0;
+    padding: 0;
+}
+
+.additionButton{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #221f26;
+    display: inline-block;
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 1px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 40%;
+}
+.additionButtonStyling{
+    height: 100%; 
+    background-color: #252229;
+    border-style: none;
+    color: white;
+    outline-style: solid;
+    outline-color: white;
+    outline-width: 1px;
+}
+.additionButtonStyling:hover{
+    cursor: pointer;
+    background-color: #37323d;
+}
+
+.editButtonStyling{
+    /*height: 50%;*/ 
+    height: 100%;
+    display: block;
+    width: 100%;
+    background-color: #252229;
+    border-style: none;
+    color: white;
+}
+.editButtonStyling img{
+    width: 100%;
+    height: auto;
+}
+.editButtonStyling:hover{
+    background-color: #665d70;
+    cursor: pointer;
+}
+
+.deleteButtonStyling{
+    /*height: 50%;*/
+    height: 100%; 
+    display: block;
+    width: 100%;
+    background-color: #252229;
+    border-style: none;
+    color: white;
+}
+.deleteButtonStyling img{
+    width: 100%;
+    height: auto;
+}
+.deleteButtonStyling:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1280px) {
+    .mainNav{
+        width: 100%;
+        height: 10%;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        background-color: #252229;
+     
+     }
+     
+     .tabSectionDivider{
+         width: 100%;
+         height: 100%;
+         display: grid;
+         grid-template-columns: 70% 30%;
+     }
+     .tabSection{
+         width: 100%;
+         height: 100%;
+         overflow-x: auto;
+         overflow-y: hidden;
+         white-space: nowrap;
+     }
+     .tab{
+         min-width: 300px;
+         max-width: 300px;
+         height: 100%;
+         outline-style: solid;
+         outline-color: white;
+         outline-width: 1px;
+         display: inline-block;
+         white-space: nowrap;
+         background-color: #221f26;
+         border: none;
+         color: white;
+         overflow: hidden;
+     }
+     .tab:hover{
+         cursor: pointer;
+         background-color: #37323d;
+     }
+     .selectedTab{
+         background-color: #37323d;
+     }
+     
+     .tabDiv{
+         /*border-top-right-radius: 15%;
+         border-top-left-radius: 15%;*/
+         display: inline-block;
+         width: 19%;
+         height: 100%;
+         background-color: #221f26;
+         color: white;
+     
+         outline-style: solid;
+         outline-color: white;
+         outline-width: 1px;
+     
+         margin-right: 0;    
+         margin: 0;
+         padding: 0;
+     }
+     
+     .additionButton{
+         width: 100%;
+         height: 100%;
+         color: white;
+         background-color: #221f26;
+         display: inline-block;
+         outline-style: solid;
+         outline-color: white;
+         outline-width: 1px;
+         display: grid;
+         grid-template-columns: 20% 20% 20% 40%;
+     }
+     .additionButtonStyling{
+         height: 100%; 
+         background-color: #252229;
+         border-style: none;
+         color: white;
+         outline-style: solid;
+         outline-color: white;
+         outline-width: 1px;
+     }
+     .additionButtonStyling:hover{
+         cursor: pointer;
+         background-color: #37323d;
+     }
+     
+
+     .editButtonStyling{
+        /*height: 50%;*/ 
+        height: 100%;
+        display: block;
+        width: 100%;
+        background-color: #252229;
+        border-style: none;
+        color: white;
+    }
+    .editButtonStyling img{
+        width: 100%;
+        height: auto;
+    }
+
+    .editButtonStyling:hover{
+        background-color: #665d70;
+        cursor: pointer;
+    }
+    
+    .deleteButtonStyling{
+        /*height: 50%;*/
+        height: 100%; 
+        display: block;
+        width: 100%;
+        background-color: #252229;
+        border-style: none;
+        color: white;
+    }
+    .deleteButtonStyling img{
+        width: 100%;
+        height: auto;
+    }
+
+    .deleteButtonStyling:hover{
+        background-color: red;
+        cursor: pointer;
+    }
+}
+
+/* End of drawing board tab styling */
+
+
+/* Drawing board styling. Currently empty, but we need to add styling for the images and the drawing functionality if necessary */
+
+
+/* End of drawing board styling.*/
+
+/* Side bar styling starts here. */
+
+/*
+    This styling is for the boss button alone! There will be a dedicated styling for the playerButtons (Slightly smaller) if necessary. If not, this one should be renamed to selectionButton
+*/
+.mainAside{
+    height: auto;
+    overflow: auto;
+    
+}
+
+.bossButton{
+    color: white;
+    background-color: #585063;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #221f26;
+    /*box-shadow: 1px 1px white;*/
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    min-width: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.bossButton img{
+    width: 100%;
+    height: auto;
+}
+.bossButton:hover:enabled{
+    cursor: pointer;
+    background-color: #665d70;
+}
+.bossButtonDisabled{
+    background-color: #3a4042;
+}
+.bossButtonSelected{
+    background-color: #3a4042;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #221f26;
+    /*box-shadow: 1px 1px white;*/
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    min-width: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.bossButtonSelected img{
+    width: 100%;
+    height: auto;
+}
+
+.hiddenBossIcons{
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+}
+.displayedBossIcons{
+    margin-top: 1%;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    background-color: #585063;
+}
+.displayedBossIcons img{
+    background-color: #463f4e;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #221f26;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    min-width: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.displayedBossIcons img:hover{
+    background-color: #665d70;
+}
+.displayedBossIcons:hover{
+    cursor: pointer;
+}
+
+.unitSelector{
+    width: 80%;
+    min-height: 700px;
+    max-height: 800px;
+    min-height: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #585063;
+    overflow: auto;
+
+    display: grid;
+    grid-template-columns: 50% 50%;   
+
+}
+
+.unit{
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 1px;
+    overflow: hidden;
+}
+
+.unit:hover{
+    cursor: pointer;
+    background-color: #665d70;
+}
+.unitImage{
+    width: 80%;
+    height: auto;
+    position: relative;
+    left: 10%;
+
+}
+.unitText{
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+.keybindButton{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: white;
+    text-align: right;
+    /*position: relative;
+    right: 10px;*/
+    padding-right: 10px;
+
+}
+
+.selectedUnit{
+    background-color: #3a4042;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 1px;
+    overflow: hidden;
+    /*outline-style: solid;
+    outline-color: white;
+    outline-width: 2px;*/
+}
+
+/*Todo: Make a grid for the player buttons*/
+
+/* Side bar styling ends here */
+
+/*Canvas styling starts here*/
+.canvasContainer{
+    width: 90vw;
+    max-width: 90vw;
+    height: 95vh;
+    max-height: 95vh;
+    overflow: auto;
+}
+
+.mapCanvas{
+    /*width: 90vw;
+    max-width: 90vw;
+    height: 95vh;
+    max-height: 95vh;*/
+    background-color: rgb(245, 237, 237);
+    overflow: scroll;
+    object-fit: contain;
+}
+
+.bossInfoDiv{
+    width: 25vw;
+    padding-top: 3vh;
+    height: 7vh;
+    position: absolute;
+    top: 10vh;
+    left: 40vw;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: black;
+    overflow: auto;
+}
+
+.bossInfoDiv:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.canvasTools{
+    /*width: 10vw;*/
+    width: 60%;
+    height: 10vh;
+    min-height: 200px;
+    margin-left: 20%;
+    background-color: #221f26;
+    /*position: absolute;
+    top: 6vh;
+    right: 2vw;*/
+    display: grid;
+    /*grid-template-columns: 25% 25% 25% 25%;*/
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50%;
+}
+
+.canvasToolItem{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.canvasToolItem:hover{
+    cursor: pointer;
+    background-color: #665d70;
+}
+.canvasToolItem img{
+    width: 80%;
+    margin-left: 10%;
+    height: auto;
+}
+
+@media screen and (max-width:1280px) {
+
+    .canvasContainer{
+        width: 70vw;
+        max-width: 70vw;
+        height: 90vh;
+        max-height: 90vh;
+        overflow: auto;
+    }
+    .mapCanvas{
+        /*width: 90vw;
+        max-width: 90vw;
+        height: 95vh;
+        max-height: 95vh;*/
+        background-color: rgb(245, 237, 237);
+        overflow: scroll;
+        object-fit: contain;
+    }
+    
+    .bossInfoDiv{
+        width: 40vw;
+        padding-top: 3vh;
+        height: 7vh;
+        position: absolute;
+        top: 15vh;
+        left: 45vw;
+        outline-style: dashed;
+        outline-width: 1px;
+        outline-color: black;
+        overflow: auto;
+    }
+    
+    .bossInfoDiv:hover{
+        cursor: pointer;
+        background-color: lightgray;
+    }
+    
+    .canvasTools{
+        /*width: 10vw;*/
+        width: 60%;
+        height: 10vh;
+        min-height: 200px;
+        margin-left: 20%;
+        background-color: #221f26;
+        /*position: absolute;
+        top: 6vh;
+        right: 2vw;*/
+        display: grid;
+        /*grid-template-columns: 25% 25% 25% 25%;*/
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50%;
+    }
+    
+    .canvasToolItem{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .canvasToolItem:hover{
+        cursor: pointer;
+        background-color: #665d70;
+    }
+    .canvasToolItem img{
+        width: 80%;
+        margin-left: 10%;
+        height: auto;
+    }
+}
+
+/*Canvas styling ends here*/
+
+/* Special functions styling starts here */
+
+.inputDialogueBackground{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(34, 31, 38, 0.7);
+    position: absolute;
+    top: 0;   
+}
+
+.inputDialogueBoxStyling{
+    background-color: #221f26;
+    width: 40vw;
+    padding-top: 5vh;
+    height: 25vh;
+    position: absolute;
+    top: 35vh;
+    left: 30vw;
+}
+.inputTextBox{
+    width: 60%;
+    font-size:24px;
+    height: auto;
+    position: relative;
+    left: 20%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+.cancelKey{
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+.cancelKey:hover{
+    background-color: #665d70;
+}
+.doneKey{
+    /*width: 25%;
+    height: 10%;*/
+    width: 40%;
+    height: 100%;
+    
+    /*position: relative;
+    left: 40%;*/
+    float: right;
+}
+.doneKey:hover{
+    background-color: #665d70;
+}
+
+/*special function styling ends here*/
+
+/* General styling for margins, padding and percentages */
+
+.lineSplit{
+    border-top-style: solid;
+    border-width: 1px;
+    border-color: rgb(75, 75, 75);
+}
+
+.fillP25{
+    width: 25%;
+}
+.fillP50{
+    width: 50%;
+}
+.fillP75{
+    width: 75%;
+}
+.fillP80{
+    width: 80%;
+}
+.fillP90{
+    width: 90%;
+}
+
+.fillP100{
+    width: 100%;
+}
+
+
+.text-center{
+    text-align: center;
+}
+
+
+/*TODO: Rename to "m-down" */
+.m-down{
+    margin-top: 1rem;
+}
+
+/*TODO: Rename to "m-down2" */
+.m-down2{
+    margin-top: 2rem;
+}
+
+/*TODO: Rename to "m-down4" */
+.m-down4{
+    margin-top: 4rem;
+}
+
+/*TODO: Rename to m-up */
+.m-up{
+    margin-bottom: 1rem;
+}
+/*TODO: Rename to m-up2 */
+.m-up2{
+    margin-bottom: 2rem;
+}
+/*TODO: Rename to m-up4 */
+.m-up4{
+    margin-bottom: 4rem;
+}
+/*TODO: Add left and rigt margins(?)*/
+
+.beforeHolding{
+    cursor: pointer;
+}
+.whileHolding{
+    cursor: grabbing;
+}
+.hiddenButton{
+    display: none;
+}

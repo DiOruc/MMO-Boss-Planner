@@ -1,0 +1,273 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MMOBossPlanner</title>
+    <link rel="icon" type = image/x-icon href="PNGs/Icons/Favicon.ico">
+    <script src="functions.js"></script>
+</head>
+
+<body>
+
+<div class="main">
+
+
+    <!-- Side bar -->
+    <aside class="mainAside" style="background-color: #221f26;">
+        <!-- Here we're putting the options for the canvas-->
+        <p class="megaText whiteText m-down2">Selection panel</p>
+        <p class="smallText whiteText">Select the units you want to place in the canvas</p>
+        <p class="smallText whiteText">Hover over the unit to find the keybind</p>
+        <button title="Selected boss" id="bossButton" onclick="holdBoss()" class="bossButton m-down2" >
+            <p id="bossName" class="bigText">BossName<p>
+            <img id="bossButtonImage" src="PNGs/ForExplorer/EvilUnknown.png" alt="bossIcon">
+        </button>
+        <button class="bossButton" onclick=" cycleBossButtonDisplay()">
+            <img style="width: 25% !important;" src="PNGs/Icons/More_Icon.png" alt="Arrow pointing down">
+        </button>
+        <div id="bossIconsButton"   class="hiddenBossIcons">
+            <img title="Mage boss" onclick="selectBoss('PNGs/ForExplorer/EvilMage.png')" src="PNGs/ForExplorer/EvilMage.png" alt="EvilMage">
+            <img title="Melee boss" onclick="selectBoss('PNGs/ForExplorer/EvilMeelee.png')" src="PNGs/ForExplorer/EvilMeelee.png" alt="EvilMeelee">
+            <!--TODO:Add an onclick that just puts this image as the selected one!-->
+        </div>
+
+        <button class="bossButton m-down" onclick="changeBossName()">
+            <p class="bigText">change boss name</p>
+        </button>
+        <button class="bossButton" onclick="changeSpellname()">
+            <p class="bigText">Change spell name</p>
+        </button>
+        <div class="lineSplit fillP90 m-down4 m-up4" style="margin-right: auto; margin-left: auto;"></div>
+        <!-- The bar with all the units -->
+        <figure class="unitSelector">
+            <div onclick="holdUnit('MainTank.png')" id="MainTankUnitButton" title="Main Tank" class="unit">
+                <p class="keybindButton">1</p>
+                <img class="unitImage" src="PNGs/ForExplorer/MainTank.png" alt="AllStack">
+                <p class="mediumText unitText">Main Tank</p>
+            </div>
+            <div onclick="holdUnit('OffTank.png')" id="OffTankUnitButton" title="Off Tank" class="unit">
+                <p class="keybindButton">2</p>
+                <img class="unitImage" src="PNGs/ForExplorer/OffTank.png" alt="AllStack">
+                <p class="mediumText unitText">Off Tank</p>
+            </div>
+            <div onclick="holdUnit('Tank.png')" id="TankUnitButton" title="General Tank" class="unit">
+                <p class="keybindButton">3</p>
+                <img class="unitImage" src="PNGs/ForExplorer/Tank.png" alt="AllStack">
+                <p class="mediumText unitText">Tank</p>
+            </div>
+            <div onclick="holdUnit('CDPS.png')" id="CDPSUnitButton" title="Melee DPS" class="unit">
+                <p class="keybindButton">4</p>
+                <img class="unitImage" src="PNGs/ForExplorer/CDPS.png" alt="AllStack">
+                <p class="mediumText unitText">Melee DPS</p>
+            </div>
+            <div onclick="holdUnit('RDPS.png')" id="RDPSUnitButton" title="Ranged DPS" class="unit">
+                <p class="keybindButton">5</p>
+                <img class="unitImage" src="PNGs/ForExplorer/RDPS.png" alt="AllStack">
+                <p class="mediumText unitText">Ranged DPS</p>
+            </div>
+            <div onclick="holdUnit('Healer.png')" id="HealerUnitButton" title="Healer" class="unit">
+                <p class="keybindButton">q</p>
+                <img class="unitImage" src="PNGs/ForExplorer/Healer.png" alt="AllStack">
+                <p class="mediumText unitText">Healer</p>
+            </div>
+            <div onclick="holdUnit('MeeleeStack.png')" id="MeeleeStackUnitButton" title="Stack Melees" class="unit">
+                <p class="keybindButton">w</p>
+                <img class="unitImage" src="PNGs/ForExplorer/MeeleeStack.png" alt="AllStack">
+                <p class="mediumText unitText">Stack Melee</p>
+            </div>
+            <div onclick="holdUnit('HealersStack.png')" id="HealersStackUnitButton" title="Stack Healers" class="unit">
+                <p class="keybindButton">e</p>
+                <img class="unitImage" src="PNGs/ForExplorer/HealersStack.png" alt="AllStack">
+                <p class="mediumText unitText">Stack Healers</p>
+            </div>
+            <div onclick="holdUnit('RangesStack.png')" id="RangesStackUnitButton" title="Stack Ranged" class="unit">
+                <p class="keybindButton">r</p>
+                <img class="unitImage" src="PNGs/ForExplorer/RangeStack.png" alt="AllStack">
+                <p class="mediumText unitText">Ranged DPS Stack</p>
+            </div>
+            <div onclick="holdUnit('RangesAndHealersStack.png')" id="RangesAndHealersStackUnitButton" title="Stack all ranged" class="unit">
+                <p class="keybindButton">a</p>
+                <img class="unitImage" src="PNGs/ForExplorer/RangesAndHealersStack.png" alt="AllStack">
+                <p class="mediumText unitText">Ranged Stack</p>
+            </div>
+            <div onclick="holdUnit('AllStack.png')" id="AllStackUnitButton" title="Stack all" class="unit">
+                <p class="keybindButton">s</p>
+                <img class="unitImage" src="PNGs/ForExplorer/AllStack.png" alt="AllStack">
+                <p class="mediumText unitText">All Stack</p>
+            </div>
+            <div onclick="selectMoving()" id="MovingUnitButton" title="Holder" class="unit">
+                <p class="keybindButton">d</p>
+                <img class="unitImage" src="PNGs/ForExplorer/DragDrop.png" alt="Drag and drop tool">
+                <p class="mediumText unitText">Drag and drop</p>
+            </div>
+
+            <div onclick="toggleDrawingModeOn(true)" id="DrawingModeToolButton" title="Draw" class="unit">
+                <p class="keybindButton">f</p>
+                <img class="unitImage" src="PNGs/ForExplorer/Draw.png" alt="Draw">
+                <p class="mediumText unitText">Draw</p>
+            </div>
+            <div onclick="clearEntireCanvas()" title="Clear Canvas" class="unit">
+                <p class="keybindButton">g</p>
+                <img class="unitImage" src="PNGs/ForExplorer/YeetItAll.png" alt="Ereaser">
+                <p class="mediumText unitText">Clear all</p>
+            </div>
+            <!--<div title="Unit" class="unit">
+                <p class="keybindButton">d</p>
+                <img class="unitImage" src="PNGs/ForExplorer/AllStack.png" alt="AllStack">
+                <p class="mediumText unitText">Unit</p>
+            </div>
+            <div title="Unit" class="unit">
+                <p class="keybindButton">f</p>
+                <img class="unitImage" src="PNGs/ForExplorer/AllStack.png" alt="AllStack">
+                <p class="mediumText unitText">Unit</p>
+            </div>
+            <div title="Unit" class="unit">
+                <p class="keybindButton">g</p>
+                <img class="unitImage" src="PNGs/ForExplorer/AllStack.png" alt="AllStack">
+                <p class="mediumText unitText">Unit</p>
+            </div>-->
+        </figure>
+
+        <div class="lineSplit fillP90 m-down2 m-up2" style="margin-right: auto; margin-left: auto;"></div>
+
+        <input id="colorSelectionTool" type="color" class="fillP90" style="margin-right: 5%; margin-left: 5%; padding: 0; border: 0; height: 2vh;">
+
+        <div class="lineSplit fillP90 m-down2 m-up2" style="margin-right: auto; margin-left: auto;"></div>
+
+        <div class="canvasTools">
+            <div onclick="undoLatestMove()" title="Undo latest move (shortcut: z)" class="canvasToolItem">
+                <img src="PNGs/ForExplorer/Undo.png" alt="Undo">
+            </div>
+            <div onclick="createJsonFile()" title="Save file" class="canvasToolItem">
+                <img src="PNGs/ForExplorer/save.png" alt="Save data">
+            </div>
+            <div onclick="getFileExplorer()" title="Import file" class="canvasToolItem">
+                <img src="PNGs/ForExplorer/Exportv1.png" alt="Import">
+            </div>
+            <div onclick="exportImage()" title="Export image" class="canvasToolItem">
+                <img src="PNGs/ForExplorer/Exportv2.png" alt="Export">
+            </div>
+        </div>
+
+        <div class="lineSplit fillP90 m-down2 m-up2" style="margin-right: auto; margin-left: auto;"></div>
+        <div class="fillP90" style="margin-left: auto; margin-right: auto;">
+                <p class="m-up bigText whiteText">Current phase: <span id="phaseCounter">1</span></p>
+            <ul style="display: inline-block; font-size: 0; padding: 0; margin-bottom: 5%;" class="fillP100">
+                <li onclick="selectPhase(false)" class="fillP50" style=" display: inline-block; ">
+                    <button id="prevPhaseButton" class="bossButton fillP100" style="margin-left: 0; margin-right: 0;">
+                        <p class="mediumText"> &lt Prev phase</p>
+                    </button>
+                </li>
+                <li onclick="selectPhase(true)" class="fillP50" style="display: inline-block;">
+                    <button id="nextPhaseButton" class="bossButton fillP100" style="margin-left: 0; margin-right: 0;">
+                        <p class="mediumText">Next phase &gt</p>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- This is the canvas section -->
+    <section>
+        <!-- Here we're putting the tabs and the canvas-->
+        <nav class="mainNav">
+            <div class="tabSectionDivider">
+
+                <div id="tabSection" class="tabSection">
+                    
+                    <!--<button id="spell0" onclick="selectSpell(this.id)" class="tab">
+                        <p class="megaText">Spell1</p>
+                    </button>-->
+
+
+                </div>
+                <div class="additionButton">
+                    <!--<div class="fillP100">
+                        <button id="NavBarUndoUnit" onclick="ereaseUnit()">
+                            <img class="fillP100" src="PNGs/ForExplorer/Undo.png" alt="Undo button" srcset="">
+                        </button>
+                        <button id="NavBarUndoPaintStroke" onclick="erease()" style="display: none;">
+                            <img src="PNGs/ForExplorer/Undo.png" alt="Undo button" srcset="">
+                        </button>
+                    </div>-->
+                    <div class="fillP100">
+                        <button id="NavBarUndoUnit" onclick="ereaseUnit()" class="editButtonStyling">
+                            <img title="Undo latest unit" src="PNGs/ForExplorer/Undo.png" alt="Undo">
+                        </button>
+                        <button id="NavBarUndoPaintStroke" onclick="erease()" class="editButtonStyling hiddenButton">
+                            <img title="Undo latest stroke" src="PNGs/ForExplorer/Erease.png" alt="Undo">
+                        </button>
+                    </div>
+                    <div class="fillP100" style=" height: 100%; background-color: red;">
+                        <button onclick="copyFromOtherTabs()" class="editButtonStyling">
+                            <img title="Copy units from another tab" class="fillP100" src="PNGs/ForExplorer/Exportv1.png" alt="Copy another tab">
+                        </button>
+                    </div>
+
+                    <div class="fillP100">
+                        <button onclick="deleteSpell()" class="deleteButtonStyling">
+                            <img title="Delete tab" class="fillP100" src="PNGs/Icons/TrashNew.png" alt="Delete tab">
+                        </button>
+                    </div>
+
+                    <button onclick="addSpellAndChangeSpellName()" class="fillP100 additionButtonStyling" style="padding: 0;">
+                        <p class="megaText">+</p>
+                    </button>
+
+                </div>               
+            </div>
+
+            <!--
+            <ul class="mainNav" style="height: 100%; font-size: 0;">
+                <li class="tabDiv">
+                    <p class="megaText">Spell 1</p>
+                </li>
+                <li class="tabDiv">
+
+                </li>
+                <li class="tabDiv">
+
+                </li>
+                <li class="tabDiv">
+
+                </li>
+                <li class="tabDiv">
+
+                </li>
+
+                <li class="additionButton"></li>
+            </ul>
+            -->
+
+
+        </nav>
+        <!--<div id="canvasSection"  class="mapCanvas">
+
+        </div>-->
+        <div id="containerForCanvas" class="canvasContainer">
+            <canvas id="canvasSection" class="mapCanvas" >
+
+            </canvas>        
+        </div>
+
+        <!--
+        <canvas>
+            
+        </canvas>
+        -->
+
+    </section>
+
+    <div onclick="changeBossName()" class="bossInfoDiv">
+            <p class="megaText"><span id="bossNameInfo">Name</span> <span> - </span> <span id="bossPhase">phase 1</span> <span> - </span> <span id="bossSpell">spell</span></p>
+    </div>
+    <input type="file" id="fileExplorerForJsons" style="display: none;">
+
+
+</div>
+
+
+</body>
+</html>
