@@ -36,6 +36,8 @@ let unitID = 0; //A way to make it easy to get which unit is currently there. By
 let isPaintingMode = false;
 let paintingUnits = []; //An array of current strokes.
 let latestUserMoves = [] //The latest moves done in a tab. This is here so the user can do a "ctrl-Z" function of their own.
+let latestUndos = [] //Undo history, to make a redo history.
+let latestUndoPainttype = [];
 let moveTypes = {unitAddition : 1, drawStroke : 2}; //For the latestUserMoves
 
 //Boss info
@@ -202,6 +204,7 @@ function importTabsFromPhase(phase){
 
 function selectTabFromPhaseFirstTime(spellID){
     latestUserMoves.splice(0, latestUserMoves.length);
+    latestUndos.splice(0, latestUndos.length);
 
     let newArrayIndex = findTabIndex(spellID);
     console.log("Tabsdata = " + newArrayIndex);
@@ -272,6 +275,7 @@ function selectSpell(spellID){
     }
     else{
         latestUserMoves.splice(0, latestUserMoves.length);
+        latestUndos.splice(0, latestUndos.length);
     }
 
 
@@ -663,6 +667,7 @@ function copyATab(phase, index){
 
 function copyATab_temp(index){
     latestUserMoves.splice(0, latestUserMoves.length);
+    latestUndos.splice(0, latestUndos.length);
     console.log(index);
     console.log(tabsData);
     arrayIndex = findTabIndex(currentlySelectedTab);
@@ -851,6 +856,7 @@ function clearSelectedUnit(idOfUnit){
 
 function clearEntireCanvas(){
     latestUserMoves.splice(0, latestUserMoves.length);
+    latestUndos.splice(0, latestUndos.length);
     paintingUnits.splice(0, paintingUnits.length);
     canvasUnits.splice(0, canvasUnits.length);
     requiredSetHeight = 0;
@@ -1179,12 +1185,40 @@ function undoLatestMove(){
     if(latestMove == undefined){
         return;
     }else{
+        console.log("UNDO!")
+        let tempUndoData;
+        let undoType;
         switch (latestMove){
             case moveTypes.unitAddition:
-                canvasUnits.pop();
+                 tempUndoData = canvasUnits.pop();
+                 undoType = {undoType: moveTypes.unitAddition, unitData: tempUndoData};
+                latestUndos.push(undoType);
                 break
             case moveTypes.drawStroke:
-                paintingUnits.pop();
+                tempUndoData = paintingUnits.pop();
+                undoType = {undoType: moveTypes.drawStroke, unitData: tempUndoData};
+                latestUndos.push(undoType);
+                console.log(latestUndos[latestUndos.length-1]);
+        }
+        resizeCanvas();
+    }
+}
+
+function redoLatestMove(){
+    let latestUndo = latestUndos.pop();
+    if(latestUndo == undefined){
+        return;
+    }
+    else{
+        switch(latestUndo.undoType){
+            case moveTypes.unitAddition:
+                console.log("Unit!");
+                canvasUnits.push(latestUndo.unitData);
+                break
+            case moveTypes.drawStroke:
+                console.log("DRAWSTROKE");
+                paintingUnits.push(latestUndo.unitData);
+                break
         }
         resizeCanvas();
     }
@@ -1242,6 +1276,9 @@ function shortcutHandling (e){
             break;
         case 71: //button g
             clearEntireCanvas();
+            break;
+        case 89: //button y
+            redoLatestMove();
             break;
         }
         
