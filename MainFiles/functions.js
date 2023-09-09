@@ -727,8 +727,8 @@ function cycleBossButtonDisplay(){
  * This function is used during selectBoss(src). It sets certain parameters that holdUnit(image) does not.
  */
 function holdBoss(){
-    document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
-    document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
+    //document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
+    //document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
     isPaintingMode = false;
     document.getElementById('canvasSection').classList.remove("beforeHolding");
     document.getElementById('canvasSection').classList.remove("whileHolding");
@@ -746,8 +746,8 @@ function holdBoss(){
  * @param {*} image : The unit image.
  */
 function holdUnit(image){
-    document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
-    document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
+    //document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
+    //document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
     isPaintingMode = false;
     clearSelectedUnit(image.substr(0, image.length-4) + "UnitButton");
     document.getElementById('canvasSection').classList.remove("beforeHolding");
@@ -766,8 +766,8 @@ function holdUnit(image){
  * This function initiate the drag and drop functionality.
  */
 function selectMoving(){
-    document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
-    document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
+    //document.getElementById('NavBarUndoPaintStroke').classList.add('hiddenButton');
+    //document.getElementById("NavBarUndoUnit").classList.remove('hiddenButton');
     isPaintingMode = false;
     currentlySelectedImage = null;
     clearSelectedUnit("MovingUnitButton");
@@ -777,8 +777,8 @@ function selectMoving(){
 
 function toggleDrawingModeOn(bool){
     clearSelectedUnit("DrawingModeToolButton");
-    document.getElementById("NavBarUndoUnit").classList.add('hiddenButton');
-    document.getElementById('NavBarUndoPaintStroke').classList.remove('hiddenButton');
+    //document.getElementById("NavBarUndoUnit").classList.add('hiddenButton');
+    //document.getElementById('NavBarUndoPaintStroke').classList.remove('hiddenButton');
     if(bool){
         holdingMode = false;
         currentlySelectedImage=null;
@@ -1214,10 +1214,12 @@ function redoLatestMove(){
             case moveTypes.unitAddition:
                 console.log("Unit!");
                 canvasUnits.push(latestUndo.unitData);
+                latestUserMoves.push(moveTypes.unitAddition);///
                 break
             case moveTypes.drawStroke:
                 console.log("DRAWSTROKE");
                 paintingUnits.push(latestUndo.unitData);
+                latestUserMoves.push(moveTypes.drawStroke);
                 break
         }
         resizeCanvas();
